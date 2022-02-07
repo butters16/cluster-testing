@@ -1,3 +1,39 @@
+# To see the problem
+
+### `npm test`
+
+- Observe that the `Solo` marker cannot be found in the test.
+  - Note that it can be seen live (as a broken image, but at least in the DOM) using `npm start`
+
+This is the problem
+```ts
+<MarkerClusterGroup>
+    <Marker position={[51.5074, -0.0901]} alt="Solo" />
+</MarkerClusterGroup>
+```
+because this passes the test
+```ts
+<Marker position={[51.5074, -0.0901]} alt="Solo" />
+```
+by itself without the `MarkerClusterGroup`.
+
+Also note that this passes the test
+```ts
+<MarkerClusterGroup>
+    <Marker position={[0, 0]} alt="Solo" />
+</MarkerClusterGroup>
+```
+but only as long as the map is also centered at 0,0
+```ts
+center={[0, 0]}
+```
+and again fails the test if moved even a tiny bit
+```ts
+<MarkerClusterGroup>
+    <Marker position={[0.001, 0]} alt="Solo" />
+</MarkerClusterGroup>
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
