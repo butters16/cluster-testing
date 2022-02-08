@@ -7,6 +7,7 @@ import './Map.css';
 const Map = () => {
     return (
         <MapContainer
+            whenCreated={map => window.map = map}
             className="markercluster-map"
             center={[51.0, 19.0]}
             // center={[0, 0]} // use this to see tests for 0,0
